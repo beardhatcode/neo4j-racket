@@ -24,6 +24,12 @@ This uses the [Transactional Cypher HTTP endpoint](https://neo4j.com/docs/develo
 
 ## Configuration
 
+### Ports and location
+
+The default ports and location for localhost are set (`http://localhost:7474`). You can change these in [here](/Neo4j.rkt#L10-L15).
+
+### Authorization
+
 To authorize the current user, you must send the username and password:
 
 ```
@@ -39,12 +45,15 @@ bmVvNGo6bmVvNGpwYXNz
 
 **Note**: The current implementation uses HTTP to log in, Basic Auth is not at all secure with plain HTTP.
 
+## Security
+
+You can use HTTPS by setting `#:port 7473` and `#:ssl? #t`. But this will make it much slower. It might work fast once we don't create a new HTTP session for every query.
+
 ## Contribute
 
 Want to help out? At the moment this is a very rudimentary implementation of a driver. A lot of things can be improved:
 
 - [ ] Don't close the HTTP session
-- [ ] Use HTTPS (this should be really easy)
 - [ ] Allow multiple statements to be sent at once in a session
 - [ ] Handle line breaks
 - [ ] A better output format
